@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Upcoming Events</h2>
+    <form method="GET" action="{% url 'index' %}" class="search-form">
+        <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search by title or location...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="event-grid">
+        {% for event in events %}
+            <div class="event-card">
+                <div class="event-image-container">
+                    {% if event.display_image %}
+                        <img src="{{ event.display_image }}" alt="{{ event.title }}" class="event-image">
+                    {% else %}
+                        <div class="no-image">No Image Available</div>
+                    {% endif %}
+                </div>
+                <div class="event-content">
+                    <h3 class="event-title"><a href="{% url 'event_detail' event.id %}">{{ event.title }}</a></h3>
+                    <p class="event-detail"><strong>Type:</strong> {{ event.event_type.name|default:"None" }}</p>
+                    <p class="event-date"><strong>Date:</strong> {{ event.date|date:"F d, Y" }}</p>
+                    <p class="event-time"><strong>Time:</strong> {{ event.date|date:"h:i A" }}</p>
+                    <p class="event-detail"><strong>Location:</strong> {{ event.location }}</p>
+                    <p class="event-price">
+                        <strong>Ticket Price:</strong> 
+                        {% if event.price > 0 %}${{ event.price|floatformat:2 }}{% else %}Free{% endif %}
+                    </p>
+                    <p class="event-creator"><small>Created by {{ event.user.username }}</small></p>
+                </div>
+                <div class="event-actions">
+                    {% if user.is_authenticated %}
+                        {% if user == event.user %}
+                            <a href="{% url 'edit_event' event.id %}" class="edit-btn">Edit</a>
+                            <a href="{% url 'delete_event' event.id %}" class="delete-btn">Delete</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No events found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- পেজিনেশন (Next এবং Previous লিখা মুছে দেওয়া) -->
+    {% if page_obj.has_other_pages %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if event_type %}&event_type={{ event_type }}{% endif %}" class="page-link">«</a>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <span class="page-link active">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if event_type %}&event_type={{ event_type }}{% endif %}" class="page-link">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if event_type %}&event_type={{ event_type }}{% endif %}" class="page-link">»</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

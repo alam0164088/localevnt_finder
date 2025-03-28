@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="event-detail-container">
+        <h2>{{ event.title }}</h2>
+        <div class="event-image">
+            {% if event.display_image %}
+                <img src="{{ event.display_image }}" alt="{{ event.title }}">
+            {% else %}
+                <div class="no-image-detail">No Image Available</div>
+            {% endif %}
+        </div>
+        <div class="event-info">
+            <p class="description">{{ event.description }}</p>
+            <p><strong>Type:</strong> {{ event.event_type.name|default:"None" }}</p>
+            <p><strong>Date:</strong> {{ event.date|date:"F d, Y H:i" }}</p>
+            <p><strong>Location:</strong> {{ event.location }}</p>
+            <p><strong>Ticket Price:</strong> ${{ event.price }}</p>
+            <p class="creator"><small>Created on: {{ event.created_at|date:"F d, Y H:i" }} by {{ event.user.username }}</small></p>
+        </div>
+        <div class="event-actions">
+            {% if user.is_authenticated and user == event.user %}
+                <a href="{% url 'edit_event' event.id %}" class="edit-btn">Edit Event</a>
+                <a href="{% url 'delete_event' event.id %}" class="delete-btn">Delete Event</a>
+                <a href="{% url 'registration_list' event.id %}" class="list-btn">Registration List</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'toggle_favorite' event.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="favorite-btn">
+                        {% if is_favorited %}Unfavorite{% else %}Favorite{% endif %}
+                    </button>
+                </form>
+                {% if is_registered %}
+                    <button class="register-btn disabled" disabled>Registered</button>
+                    <a href="{% url 'unregister_event' event.id %}" class="unregister-btn">Unregister</a>
+                {% else %}
+                    <a href="{% url 'register_event' event.id %}" class="register-btn" id="register-btn">Register</a>
+                {% endif %}
+            {% else %}
+                <p><small>Please <a href="{% url 'login' %}">login</a> to register or favorite this event.</small></p>
+            {% endif %}
+            <a href="https://twitter.com/intent/tweet?text=Check out this event: {{ event.title }}&url={{ request.build_absolute_uri }}" target="_blank" class="share-btn">Share on Twitter</a>
+        </div>
+    </div>
+
+    {% if event.price > 0 and not is_registered %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+    var registerBtn = document.getElementById('register-btn');
+    if (registerBtn) {
+        registerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch("{% url 'create_payment' event.id %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Payment request failed: ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                if (data.session_id) {
+                    stripe.redirectToCheckout({ sessionId: data.session_id });
+                } else {
+                    alert('Error: Unable to create payment session.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Payment initiation failed. Please try again.');
+            });
+        });
+    }
+</script>
+{% endif %}
+{% endblock %}

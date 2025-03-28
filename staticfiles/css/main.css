@@ -1,0 +1,1029 @@
+/* রিসেট ডিফল্ট স্টাইল */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* বডি স্টাইল */
+body {
+    background: linear-gradient(
+        135deg,
+        rgb(255, 107, 107),  /* উজ্জ্বল লাল */
+        rgb(78, 205, 196),   /* চকচকে সবুজ-নীল */
+        rgb(69, 183, 209),   /* আকাশি নীল */
+        rgb(150, 201, 61)    /* উজ্জ্বল সবুজ */
+    );
+    background-size: 400% 400%; /* অ্যানিমেশনের জন্য বড় সাইজ */
+    animation: gradientAnimation 15s ease infinite; /* চকচকে অ্যানিমেশন */
+    color: #1f2a44;
+    line-height: 1.6;
+    margin-top: 180px;
+}
+
+/* গ্রেডিয়েন্ট অ্যানিমেশন */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ফিক্সড ন্যাভবার */
+.fixed-navbar {
+    background: linear-gradient(135deg, #2b4b9b, #4c8bf5);
+    color: #ffffff;
+    padding: 0.75rem;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.fixed-navbar h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+nav {
+    margin-top: 0.75rem;
+}
+
+nav a, nav span {
+    color: #e0e7ff;
+    text-decoration: none;
+    margin: 0 25px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    color: #dbeafe;
+    transform: scale(1.05);
+}
+
+/* লগআউট ফর্ম স্টাইল */
+nav .logout-form {
+    display: inline-block;
+    margin: 0 25px;
+    background: transparent;
+    padding: 0;
+}
+
+/* লগআউট বাটন */
+.logout-btn {
+    background: linear-gradient(135deg, #e63946, #f9844a);
+    color: #ffffff !important;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout-btn i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #d00000, #ff5e5b);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.6);
+}
+
+.logout-btn:hover i {
+    transform: translateX(5px);
+}
+
+.logout-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(230, 57, 70, 0.3);
+}
+
+/* মেইন কনটেন্ট */
+main {
+    max-width: 1300px;
+    margin: 120px auto 60px; /* নিচে প্যাডিং যাতে ওভারল্যাপ না হয় */
+    padding: 0 10px;
+}
+
+/* ফর্ম স্টাইল */
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="datetime-local"],
+form input[type="url"],
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #4c8bf5;
+    box-shadow: 0 0 6px rgba(76, 139, 245, 0.4);
+    outline: none;
+}
+
+form textarea {
+    height: 140px;
+    resize: vertical;
+}
+
+form input[type="submit"],
+form button:not(.logout-btn):not(.search-form button) {
+    background: #4c8bf5;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover,
+form button:not(.logout-btn):not(.search-form button):hover {
+    background: #3b82f6;
+    transform: translateY(-2px);
+}
+
+/* সার্চ ফর্ম */
+.search-form {
+    display: flex;
+    max-width: 400px;
+    margin: 5px auto;
+    background: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.search-form input[type="text"] {
+    width: 70%;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    background: #fafafa;
+    outline: none;
+}
+
+.search-form input[type="text"]:focus {
+    box-shadow: inset 0 0 6px rgba(76, 139, 245, 0.3);
+}
+
+.search-form button {
+    width: 30%;
+    padding: 4px;
+    background: #4c8bf5;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.search-form button:hover {
+    background: #3b82f6;
+}
+
+/* ইভেন্ট গ্রিড */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding: 15px 0;
+}
+
+/* ইভেন্ট কার্ড */
+.event-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ইভেন্ট ইমেজ কনটেইনার */
+.event-image-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    background-color: #e2e8f0;
+}
+
+/* ইভেন্ট ইমেজ */
+.event-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px 15px 0 0;
+    transition: transform 0.4s ease;
+}
+
+.event-card:hover .event-image {
+    transform: scale(1.08);
+}
+
+/* নো-ইমেজ প্লেসহোল্ডার */
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1.2rem;
+    background: #e2e8f0;
+    border-radius: 15px 15px 0 0;
+}
+
+/* ইভেন্ট কনটেন্ট */
+.event-content {
+    padding: 4px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    line-height: 1.2;
+}
+
+/* ইভেন্ট টাইটেল ও অন্যান্য */
+.event-title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.event-title a {
+    color: #2b4b9b;
+    text-decoration: none;
+}
+
+.event-title a:hover {
+    color: #4c8bf5;
+    text-decoration: underline;
+}
+
+.event-date {
+    margin: 0;
+    font-size: 1rem;
+    color: #1e40af;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.event-time {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.2;
+}
+
+.event-detail {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.2;
+}
+
+.event-price {
+    margin: 0;
+    font-size: 1rem;
+    color: #059669;
+    font-weight: 700;
+    background: #ecfdf5;
+    padding: 1px 4px;
+    border-radius: 5px;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+.event-creator {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.event-actions {
+    margin-top: 2px;
+    padding: 0 4px 4px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.edit-btn, .delete-btn, .register-btn, .favorite-btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 70px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #4c8bf5;
+}
+
+.edit-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+}
+
+.delete-btn {
+    background: #e63946;
+}
+
+.delete-btn:hover {
+    background: #d00000;
+    transform: translateY(-3px);
+}
+
+.register-btn {
+    background: #059669;
+}
+
+.register-btn:hover {
+    background: #047857;
+    transform: translateY(-3px);
+}
+
+.register-btn.disabled {
+    background: #64748b;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.favorite-btn {
+    background: #059669;
+}
+
+.favorite-btn:hover {
+    background: #047857;
+    transform: translateY(-3px);
+}
+
+/* পেজিনেশন */
+.pagination {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination .page-link {
+    display: inline-block;
+    padding: 8px;
+    margin: 0 8px;
+    text-decoration: none;
+    color: #4c8bf5;
+    border: 1px solid #dbeafe;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    line-height: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background: #eff6ff;
+    color: #2b4b9b;
+}
+
+.pagination .page-link.active {
+    background: #4c8bf5;
+    color: #ffffff;
+    border-color: #4c8bf5;
+}
+
+/* ইভেন্ট ডিটেইল */
+h2 {
+    color: #2b4b9b;
+    margin-bottom: 10px;
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+p {
+    margin: 15px 0;
+}
+
+p strong {
+    color: #2b4b9b;
+}
+
+/* অন্যান্য বাটন */
+button, a[href*="twitter"] {
+    display: inline-block;
+    margin: 8px;
+    padding: 8px 16px;
+    background: #4c8bf5;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+button:hover, a[href*="twitter"]:hover {
+    background: #3b82f6;
+}
+
+/* রেসপনসিভ ডিজাইন */
+@media (max-width: 900px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        margin-top: 120px;
+    }
+
+    main {
+        padding: 0 5px;
+    }
+
+    .fixed-navbar {
+        padding: 0.5rem;
+    }
+
+    .fixed-navbar h1 {
+        font-size: 1.75rem;
+    }
+
+    nav a, nav span, nav .logout-form {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .search-form {
+        max-width: 100%;
+        margin: 5px auto;
+    }
+
+    .search-form input[type="text"],
+    .search-form button {
+        width: 100%;
+        border-radius: 30px;
+        margin: 2px 0;
+        padding: 3px 6px;
+        font-size: 0.85rem;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        height: auto;
+    }
+
+    .event-image-container {
+        height: 200px;
+    }
+
+    .event-content {
+        padding: 3px;
+    }
+
+    .event-title {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .event-date, .event-time, .event-detail, .event-price {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .event-creator {
+        margin: 0;
+        font-size: 0.8rem;
+    }
+
+    .event-actions {
+        padding: 0 3px 3px;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .edit-btn, .delete-btn, .register-btn, .favorite-btn {
+        padding: 4px 8px;
+        font-size: 0.85rem;
+        min-width: 60px;
+        margin: 3px 0;
+    }
+
+    .pagination {
+        padding: 8px 0;
+        gap: 5px;
+    }
+
+    .pagination .page-link {
+        padding: 6px;
+        margin: 0 4px;
+        font-size: 0.9rem;
+        width: 32px;
+        height: 32px;
+        line-height: 18px;
+    }
+
+    h2 {
+        margin-bottom: 8px;
+        font-size: 2rem;
+    }
+}
+
+/* ইভেন্ট ডিটেইল কনটেইনার */
+.event-detail-container {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 950px;
+    margin: 130px auto 40px;
+}
+
+.event-detail-container h2 {
+    color: #2b4b9b;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.event-image {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.event-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.no-image-detail {
+    width: 100%;
+    max-width: 400px;
+    height: 240px;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.event-info {
+    margin-bottom: 30px;
+}
+
+.event-info .description {
+    color: #475569;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.event-info p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.event-info p strong {
+    color: #2b4b9b;
+}
+
+.event-info .creator {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.event-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.event-actions a, .event-actions button {
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #ffffff;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.edit-btn {
+    background: #4c8bf5;
+}
+
+.edit-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+}
+
+.delete-btn {
+    background: #e63946;
+}
+
+.delete-btn:hover {
+    background: #d00000;
+    transform: translateY(-3px);
+}
+
+.favorite-btn {
+    background: #059669;
+    border: none;
+    cursor: pointer;
+}
+
+.favorite-btn:hover {
+    background: #047857;
+    transform: translateY(-3px);
+}
+
+.share-btn {
+    background: #1da1f2;
+}
+
+.share-btn:hover {
+    background: #0ea5e9;
+    transform: translateY(-3px);
+}
+
+/* রেসপনসিভ ডিটেইল পেজ */
+@media (max-width: 600px) {
+    .event-detail-container {
+        margin: 100px 10px 20px;
+        padding: 15px;
+    }
+
+    .event-detail-container h2 {
+        font-size: 2rem;
+    }
+
+    .event-image img, .no-image-detail {
+        width: 100%;
+        height: auto;
+    }
+
+    .event-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* ইভেন্ট টাইপ বার */
+.event-type-bar {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.event-type-bar a {
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    color: #1f2a44;
+}
+
+.event-type-bar a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.event-type-bar a.active {
+    color: #ffffff;
+    font-weight: 700;
+    transform: scale(1.05);
+}
+
+.event-type-bar a[href$="music"],
+.event-type-bar a[href$="music"].active {
+    background: #9333ea;
+    color: #ffffff;
+}
+
+.event-type-bar a[href$="music"]:hover:not(.active) {
+    background: #a855f7;
+}
+
+.event-type-bar a[href$="sports"],
+.event-type-bar a[href$="sports"].active {
+    background: #e63946;
+    color: #ffffff;
+}
+
+.event-type-bar a[href$="sports"]:hover:not(.active) {
+    background: #f87171;
+}
+
+.event-type-bar a[href$="education"],
+.event-type-bar a[href$="education"].active {
+    background: #4c8bf5;
+    color: #ffffff;
+}
+
+.event-type-bar a[href$="education"]:hover:not(.active) {
+    background: #60a5fa;
+}
+
+.event-type-bar a[href$="food-drink"],
+.event-type-bar a[href$="food-drink"].active {
+    background: #f59e0b;
+    color: #ffffff;
+}
+
+.event-type-bar a[href$="food-drink"]:hover:not(.active) {
+    background: #fbbf24;
+}
+
+.event-type-bar a[href$="other"],
+.event-type-bar a[href$="other"].active {
+    background: #059669;
+    color: #ffffff;
+}
+
+.event-type-bar a[href$="other"]:hover:not(.active) {
+    background: #10b981;
+}
+
+.event-type-bar a[href="{% url 'index' %}"],
+.event-type-bar a[href="{% url 'index' %}"].active {
+    background: #64748b;
+    color: #ffffff;
+}
+
+.event-type-bar a[href="{% url 'index' %}"]:hover:not(.active) {
+    background: #94a3b8;
+}
+
+@media (max-width: 600px) {
+    .event-type-bar {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .event-type-bar a {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}
+
+/* আনরেজিস্টার বাটন */
+.unregister-btn {
+    background: #e63946;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.unregister-btn:hover {
+    background: #d00000;
+    transform: translateY(-3px);
+}
+
+/* লিস্ট বাটন */
+.list-btn {
+    background: #4c8bf5;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.list-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+}
+
+/* এরর মেসেজ */
+.error-message {
+    color: #e63946;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    text-align: center;
+    background: #fee2e2;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(230, 57, 70, 0.2);
+}
+
+/* ফর্ম কনটেইনার */
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* ফর্ম গ্রুপ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #2b4b9b;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="number"],
+.form-group input[type="datetime-local"],
+.form-group textarea,
+.form-group select,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4c8bf5;
+    box-shadow: 0 0 8px rgba(76, 139, 245, 0.4);
+    outline: none;
+}
+
+.form-group textarea {
+    height: 140px;
+    resize: vertical;
+}
+
+.form-group select {
+    appearance: none;
+    background: #fafafa url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="%231f2a44" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 14px center;
+    padding-right: 35px;
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+}
+
+.current-file {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-top: 8px;
+}
+
+.current-file a {
+    color: #4c8bf5;
+    text-decoration: none;
+}
+
+.current-file a:hover {
+    text-decoration: underline;
+}
+
+/* ফর্ম অ্যাকশন বাটন */
+.form-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.submit-btn {
+    background: #4c8bf5;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+}
+
+.cancel-btn {
+    background: #64748b;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background: #475569;
+    transform: translateY(-3px);
+}

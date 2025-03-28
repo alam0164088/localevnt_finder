@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Local Event Finder{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Font Awesome লিঙ্ক যোগ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="fixed-navbar">
+        <h1>Local Event Finder</h1>
+        <nav>
+            <a href="{% url 'index' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'upload_event' %}">Upload Event</a>
+                <span>Welcome, {{ user.username }}</span>
+                <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="event-type-bar">
+        <a href="{% url 'index' %}" class="{% if not event_type %}active{% endif %}">All</a>
+        {% for type in event_types %}
+            <a href="{% url 'index' %}?event_type={{ type.slug }}" class="{% if event_type == type.slug %}active{% endif %}">{{ type.name }}</a>
+        {% endfor %}
+    </div>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
