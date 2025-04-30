@@ -737,7 +737,7 @@ button:hover, a[href*="twitter"]:hover {
 }
 
 .event-type-bar a.active {
-    color: #ffffff;
+    color: #1b0505;
     font-weight: 700;
     transform: scale(1.05);
 }
