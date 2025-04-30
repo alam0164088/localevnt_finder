@@ -12,7 +12,8 @@ SECRET_KEY = 'your-secret-key-here'
 DEBUG = True
 
 # হোস্ট সেটিংস
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localevnt-finder.onrender.com', 'localhost', '127.0.0.1']
+
 
 # ইনস্টল করা অ্যাপস
 INSTALLED_APPS = [
@@ -36,6 +37,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # URL কনফিগারেশন
 ROOT_URLCONF = 'local_event_finder.urls'
